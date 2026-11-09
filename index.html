@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCare | Vehicle Service Management</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+    <h2>🚘 AutoCare</h2>
+    <div id="userInfo">Vehicle Service Management System</div>
+</header>
+
+<!-- AUTHENTICATION -->
+<div id="authSection" class="auth">
+
+    <div class="auth-logo">🚗</div>
+    <h2>Welcome to AutoCare</h2>
+    <p class="subtitle">Your vehicle care partner</p>
+
+    <div id="loginForm">
+        <label>Username</label>
+        <input id="loginUser" placeholder="Enter username" autocomplete="username">
+
+        <label>Password</label>
+        <input id="loginPass" type="password"
+               placeholder="Enter password" autocomplete="current-password">
+
+        <button class="primary-btn full-btn" onclick="login()">Login →</button>
+
+        <p class="switch-text">
+            Don't have an account?
+            <a href="#" onclick="showRegister(); return false;">Register</a>
+        </p>
+    </div>
+
+    <div id="registerForm" class="hidden">
+        <h3>Create Account</h3>
+
+        <label>Full Name</label>
+        <input id="regName" placeholder="Enter full name">
+
+        <label>Phone Number</label>
+        <input id="regPhone" type="tel" placeholder="Enter phone number">
+
+        <label>Username</label>
+        <input id="regUser" placeholder="Create username">
+
+        <label>Password</label>
+        <input id="regPass" type="password" placeholder="Create password">
+
+        <button class="primary-btn full-btn" onclick="register()">Register Now</button>
+        <button class="secondary-btn full-btn" onclick="showLogin()">Back to Login</button>
+    </div>
+
+    <p id="authMessage" class="message"></p>
+</div>
+
+<!-- MAIN APPLICATION -->
+<div id="mainSection" class="container hidden">
+
+    <div class="welcome-section">
+        <div>
+            <h1>Dashboard</h1>
+            <p>Manage your vehicle services in one place.</p>
+        </div>
+        <span class="welcome-icon">⚙️</span>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navigation">
+        <button class="nav-btn active"
+            onclick="showPage('dashboard',this)">🏠 Dashboard</button>
+
+        <button class="nav-btn"
+            onclick="showPage('vehicles',this)">🚗 My Vehicles</button>
+
+        <button class="nav-btn"
+            onclick="showPage('services',this)">🛠️ Services</button>
+
+        <button class="nav-btn"
+            onclick="showPage('charges',this)">💰 Charges</button>
+    </nav>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard">
+
+        <div class="stats">
+
+            <div class="stat-card blue-card">
+                <div class="stat-icon">🚗</div>
+                <p>Total Vehicles</p>
+                <h2 id="totalVehicles">0</h2>
+            </div>
+
+            <div class="stat-card purple-card">
+                <div class="stat-icon">🛠️</div>
+                <p>Total Services</p>
+                <h2 id="totalServices">0</h2>
+            </div>
+
+            <div class="stat-card orange-card">
+                <div class="stat-icon">⏳</div>
+                <p>Pending Services</p>
+                <h2 id="pendingServices">0</h2>
+            </div>
+
+            <div class="stat-card green-card">
+                <div class="stat-icon">✅</div>
+                <p>Completed Services</p>
+                <h2 id="completedServices">0</h2>
+            </div>
+
+        </div>
+
+        <div class="card welcome-card">
+            <h2>Hello, <span id="welcomeName">Customer</span> 👋</h2>
+            <p>Welcome to AutoCare Vehicle Service Management.</p>
+            <p>Register your vehicle and manage your service records easily.</p>
+        </div>
+
+    </section>
+
+    <!-- VEHICLES -->
+    <section id="vehicles" class="hidden">
+
+        <div class="card">
+            <h2>🚗 Register Your Vehicle</h2>
+            <p class="section-description">Add your vehicle details below.</p>
+
+            <label>Vehicle Number</label>
+            <input id="vehicleNumber" placeholder="Example: TS09AB1234">
+
+            <label>Vehicle Model</label>
+            <input id="vehicleModel" placeholder="Example: Honda City">
+
+            <label>Vehicle Type</label>
+            <select id="vehicleType">
+                <option>Car</option>
+                <option>Bike</option>
+                <option>Scooter</option>
+                <option>Other</option>
+            </select>
+
+            <button class="primary-btn" onclick="addVehicle()">+ Register Vehicle</button>
+            <p id="vehicleMessage" class="message"></p>
+        </div>
+
+        <div class="card">
+            <h2>My Registered Vehicles</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vehicle Number</th>
+                            <th>Model</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vehicleTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="hidden">
+
+        <div class="card">
+            <h2>🛠️ Create Service Record</h2>
+            <p class="section-description">Enter the required service details.</p>
+
+            <label>Select Vehicle</label>
+            <select id="serviceVehicle"></select>
+
+            <label>Service Description</label>
+            <textarea id="serviceDescription"
+                placeholder="Example: Engine oil change, brake repair..."></textarea>
+
+            <button class="primary-btn" onclick="addService()">+ Create Service</button>
+            <p id="serviceMessage" class="message"></p>
+        </div>
+
+        <div class="card">
+            <h2>Service History</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service ID</th>
+                            <th>Vehicle</th>
+                            <th>Description</th>
+                            <th>Charge</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="serviceTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- CHARGES -->
+    <section id="charges" class="hidden">
+
+        <div class="card">
+            <h2>💰 Add Service Charges</h2>
+            <p class="section-description">Record the amount for a service.</p>
+
+            <label>Select Service</label>
+            <select id="chargeService"></select>
+
+            <label>Service Charge (₹)</label>
+            <input type="number" id="serviceCharge"
+                min="1" step="0.01" placeholder="Enter amount">
+
+            <button class="primary-btn" onclick="addCharge()">Save Charges</button>
+            <p id="chargeMessage" class="message"></p>
+        </div>
+
+        <div class="card">
+            <h2>✅ Complete Service</h2>
+            <p class="section-description">
+                A service can be completed only after charges are recorded.
+            </p>
+
+            <label>Select Service</label>
+            <select id="completeService"></select>
+
+            <button class="success-btn" onclick="completeService()">
+                Mark as Completed
+            </button>
+
+            <p id="completeMessage" class="message"></p>
+        </div>
+
+    </section>
+
+    <button class="logout-btn" onclick="logout()">↪ Logout</button>
+
+</div>
+
+<footer>
+    <p>© 2026 AutoCare Vehicle Service Management System</p>
+    <p>Designed for Better Vehicle Care 🚗</p>
+</footer>
+
+</body>
+</html>
