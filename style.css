@@ -1,4 +1,4 @@
-
+ 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 * {
@@ -13,8 +13,6 @@ body {
     min-height: 100vh;
     color: #1e293b;
 }
-
-/* HEADER */
 
 .topbar {
     background: linear-gradient(110deg, #0f172a, #172554, #1e40af);
@@ -39,14 +37,13 @@ body {
     color: #dbeafe;
 }
 
-/* AUTHENTICATION */
+/* LOGIN */
 
 .auth {
     max-width: 430px;
     margin: 65px auto;
     padding: 35px;
-    background: rgba(255,255,255,0.95);
-    border: 1px solid #ffffff;
+    background: white;
     border-radius: 20px;
     box-shadow: 0 15px 45px #1e3a8a20;
 }
@@ -54,7 +51,6 @@ body {
 .auth h2 {
     text-align: center;
     color: #1e3a8a;
-    font-size: 24px;
 }
 
 .auth h3 {
@@ -70,7 +66,6 @@ body {
     margin: 0 auto 15px;
     border-radius: 20px;
     font-size: 35px;
-    box-shadow: 0 8px 20px #2563eb40;
 }
 
 .subtitle {
@@ -92,15 +87,13 @@ body {
     text-decoration: none;
 }
 
-/* MAIN CONTAINER */
+/* CONTAINER */
 
 .container {
     max-width: 1150px;
     margin: 35px auto;
     padding: 20px;
 }
-
-/* WELCOME SECTION */
 
 .welcome-section {
     background: linear-gradient(110deg, #1d4ed8, #4338ca, #6d28d9);
@@ -110,6 +103,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
     margin-bottom: 25px;
     box-shadow: 0 10px 25px #4338ca30;
 }
@@ -124,8 +119,15 @@ body {
     font-size: 14px;
 }
 
+.welcome-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
 .welcome-icon {
-    font-size: 55px;
+    font-size: 40px;
 }
 
 /* NAVIGATION */
@@ -145,14 +147,6 @@ body {
     border-radius: 10px;
     font-size: 13px;
     font-weight: 600;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.nav-btn:hover {
-    background: #dbeafe;
-    color: #1d4ed8;
-    transform: translateY(-2px);
 }
 
 .nav-btn.active {
@@ -162,7 +156,7 @@ body {
     box-shadow: 0 5px 15px #2563eb40;
 }
 
-/* DASHBOARD CARDS */
+/* DASHBOARD */
 
 .stats {
     display: grid;
@@ -177,12 +171,6 @@ body {
     background: white;
     box-shadow: 0 5px 20px #0000000c;
     transition: 0.3s;
-    border: 1px solid #ffffff;
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px #00000015;
 }
 
 .stat-icon {
@@ -235,13 +223,7 @@ body {
     margin-bottom: 22px;
 }
 
-.welcome-card p {
-    color: #64748b;
-    margin-top: 12px;
-    font-size: 14px;
-}
-
-/* INPUT FIELDS */
+/* INPUTS */
 
 label {
     display: block;
@@ -267,7 +249,7 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
     border-color: #3b82f6;
     background: white;
-    box-shadow: 0 0 0 3px #3b82f620;
+    box-shadow: 0 0 0 3px #2563eb20;
 }
 
 textarea {
@@ -275,7 +257,7 @@ textarea {
     resize: vertical;
 }
 
-/* BUTTONS */
+/* ALL BUTTONS */
 
 button {
     cursor: pointer;
@@ -283,60 +265,116 @@ button {
     transition: all 0.3s ease;
 }
 
-.primary-btn, .success-btn, .secondary-btn, .logout-btn {
+/* BUTTON HOVER GLOW AND BLINK */
+
+.primary-btn, .success-btn, .secondary-btn,
+.logout-btn, .commit-btn, .edit-btn, .delete-btn,
+.nav-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-btn {
+    color: white;
+    background: linear-gradient(110deg, #2563eb, #4f46e5);
     border: none;
     padding: 12px 22px;
     border-radius: 9px;
     font-size: 13px;
     font-weight: 700;
     margin-top: 12px;
-}
-
-.primary-btn {
-    color: white;
-    background: linear-gradient(110deg, #2563eb, #4f46e5);
     box-shadow: 0 5px 12px #2563eb30;
-}
-
-.primary-btn:hover {
-    background: linear-gradient(110deg, #1d4ed8, #4338ca);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px #2563eb45;
 }
 
 .success-btn {
     color: white;
     background: linear-gradient(110deg, #16a34a, #059669);
-    box-shadow: 0 5px 12px #16a34a30;
-}
-
-.success-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 18px #16a34a45;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 9px;
+    font-weight: 700;
+    margin-top: 12px;
 }
 
 .secondary-btn {
     background: #e2e8f0;
     color: #334155;
+    border: none;
+    padding: 12px;
+    border-radius: 9px;
+    font-weight: 600;
+    margin-top: 10px;
 }
 
-.secondary-btn:hover {
-    background: #cbd5e1;
-}
-
-.full-btn {
-    width: 100%;
+.commit-btn {
+    color: white;
+    background: linear-gradient(110deg, #0891b2, #2563eb);
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 700;
 }
 
 .logout-btn {
     color: white;
     background: linear-gradient(110deg, #ef4444, #dc2626);
+    border: none;
     padding: 13px 25px;
+    border-radius: 9px;
+    font-weight: 700;
+    margin-top: 10px;
 }
 
-.logout-btn:hover {
-    background: #b91c1c;
-    transform: translateY(-2px);
+/* EDIT AND DELETE */
+
+.edit-btn, .delete-btn {
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 3px;
+}
+
+.edit-btn {
+    background: linear-gradient(110deg, #2563eb, #4f46e5);
+}
+
+.delete-btn {
+    background: linear-gradient(110deg, #ef4444, #dc2626);
+}
+
+/* HOVER ANIMATION */
+
+.primary-btn:hover,
+.success-btn:hover,
+.commit-btn:hover,
+.logout-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover,
+.secondary-btn:hover,
+.nav-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    filter: brightness(1.15);
+    animation: buttonBlink 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes buttonBlink {
+    from {
+        box-shadow: 0 0 5px #60a5fa55;
+    }
+    to {
+        box-shadow: 0 0 15px #38bdf8, 0 0 25px #6366f155;
+    }
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+.full-btn {
+    width: 100%;
 }
 
 /* TABLE */
@@ -349,7 +387,7 @@ button {
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 650px;
+    min-width: 750px;
 }
 
 th {
@@ -413,7 +451,7 @@ footer {
     line-height: 2;
 }
 
-/* MOBILE RESPONSIVE */
+/* MOBILE */
 
 @media(max-width: 600px) {
 
@@ -439,7 +477,7 @@ footer {
     }
 
     .welcome-icon {
-        font-size: 38px;
+        font-size: 30px;
     }
 
     .navigation {
